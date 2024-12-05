@@ -43,7 +43,7 @@ const Navbar = () => {
             <p className="text-red-500 font-bold relative right-0 px-8 text-xl flex items-center w-[40%]">(Cat)Fact:
             <p className="text-[10px] max-w-[500px] ml-2">{fact}</p>  
             </p>
-            <button onClick={() => setFactstate(!factstate)} className="relative right-0 w-[10%] shadow-2xl text-white rounded-md px-4 py-2 border-white border-2 font-bold mr-4 bg-red-400">NewFact</button>
+            <button onClick={() => setFactstate(!factstate)} className="relative right-0 w-[10%] shadow-2xl text-white rounded-md px-4 py-2 border-white border-2 font-bold mr-4 bg-red-500">NewFact</button>
         </div>
 
     );
