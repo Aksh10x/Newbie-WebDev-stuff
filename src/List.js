@@ -22,6 +22,16 @@ const List = () => {
       setItems(newItems);
     };
 
+    const func = () => {
+        
+        console.log(document.getElementById("hello"));
+        const box = document.getElementById("hello");
+        box.style.backgroundColor = "#f45336"
+        setTimeout (() => box.style.backgroundColor = "#f44336",1000)
+    
+    };
+
+    useEffect(() => func(), [items])  
 
     return (
         <>
@@ -30,7 +40,7 @@ const List = () => {
             <InputBox setInput={setInput} input={input} items={items} setItems={setItems}/>
         </div>
         }
-        <div className="max-w-[350px] text-white bg-red-500 w-full h-[450px] rounded-xl flex flex-col justify-evenly bg-opacity-90 border-2 border-red-600 backdrop-blur-sm shadow-2xl top-[40px] relative"> 
+        <div id="hello" className="max-w-[350px] text-white bg-red-500 w-full h-[450px] rounded-xl flex flex-col justify-evenly bg-opacity-90 border-2 border-red-600 backdrop-blur-sm shadow-2xl top-[40px] relative"> 
         <h1 className="text-center font-bold text-2xl mt-2">TO-DO List</h1>
         <div className="flex flex-col gap-2 mt-4 h-[80%] overflow-y-auto">
             {items.map((item) =>

@@ -6,33 +6,40 @@ const Navbar = () => {
     const [fact,setFact] = useState("");
     const [factstate,setFactstate] = useState(true);
 
-    // const fetchData = () => {
-        
-    //     fetch('https://catfact.ninja/fact')
-    //     .then((res)=> res.json()
-    //     )
-    //     .then((data)=> {
-    //         setFact(data.fact)
-    //         console.log(data) 
-    //     }
-    //     )
-    //     .catch((err)=>{
-    //         console.log("Error in fetching");
-    //     });
-    // };
+    const fetchData = async () => { 
+        try{
+        const response= await fetch('https://catfact.ninja/fact')
+        console.log(response)
+        if (!response.ok) { 
+            // If the response status is not OK (e.g., 404 or 500), throw an error
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        setFact(data.fact)
+        console.log(data)
+        }
+        catch(err){
+            console.log("error fetching", err.message)
+        }
+    };
 
     useEffect(() => {
-        fetch('https://catfact.ninja/fact')
-        .then((res)=> res.json()
-        )
-        .then((data)=> {
-            setFact(data.fact)
-            console.log(data) 
-        }
-        )
-        .catch((err)=>{
-            console.log("Error in fetching");
-        });
+        // fetch('https://catfact.ninja/fact') //resolve(the data)
+        // .then((res)=> {
+        //     console.log("first .then")
+        //     return res.json() //not an api fetch, but it will be returned wrapped as a promise and not just the object [returns a promise]
+        // }
+        // ) // next then recieves the promise, its just a .json method so it will resolve immedeately, resolving to res.json() (an object)
+        // .then((data)=> { //recieves the object and a "data" 
+        //     setFact(data.fact)
+        // }
+        // )
+        // .catch((err)=>{
+        //     console.log("Error in fetching",err);
+        // });
+        fetchData();
     },[factstate]);
 
     
