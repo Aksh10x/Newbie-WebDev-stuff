@@ -11,9 +11,19 @@ const List = () => {
         ];
     });
 
+    
     useEffect(() => {
-        localStorage.setItem("MY_LIST", JSON.stringify(items));
-    },[items]);
+        localStorage.setItem("MY_LIST", JSON.stringify(items)); 
+        if (items.length > 0 && items[0].id !== 1) { 
+           
+          const updatedItems = items.map((item, index) => ({
+            task: item.task,
+            id: index + 1,
+          }));
+          setItems(updatedItems); 
+        }
+      }, [items]);
+      
 
     const [input,setInput]=useState(false);
 
@@ -40,17 +50,18 @@ const List = () => {
             <InputBox setInput={setInput} input={input} items={items} setItems={setItems}/>
         </div>
         }
-        <div id="hello" className="max-w-[350px] text-white bg-red-500 w-full h-[450px] rounded-xl flex flex-col justify-evenly bg-opacity-90 border-2 border-red-600 backdrop-blur-sm shadow-2xl top-[40px] relative"> 
+        <div id="hello" className="max-w-[350px] text-white transition-all bg-red-500 w-full h-[450px] rounded-xl flex flex-col justify-evenly bg-opacity-90 border-2 border-red-600 backdrop-blur-sm shadow-2xl top-[40px] relative"> 
         <h1 className="text-center font-bold text-2xl mt-2">TO-DO List</h1>
         <div className="flex flex-col gap-2 mt-4 h-[80%] overflow-y-auto">
             {items.map((item) =>
-             <div className="flex mx-8 justify-between">
+             <div className="flex mx-8 justify-between font-semibold">
                 
                 <p>{item.id}) {item.task}</p>
                 <button className="bg-white shadow-xl text-black rounded-md px-4 py-1 border-red-600 border-2"
                 onClick={() => handleClick(item.id)}
-                >Delete</button>
-            </div>)}
+                >Complete</button>
+            </div>
+            )}
         </div>
         <div className="relative bottom-0 h-[20%] text-black flex justify-center items-center">
             <button className="bg-red-400 w-[90%] shadow-2xl text-white rounded-md px-4 py-2 border-white border-2 font-bold"

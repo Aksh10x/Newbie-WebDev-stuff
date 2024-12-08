@@ -12,7 +12,7 @@ const InputBox = ({ setInput, input, items, setItems }) => {
       
       const newId = items.length > 0 ? Math.max(...items.map(item => item.id)) + 1 : 1;
 
-      const newItem = { id: newId, task: newTask };
+      const newItem = { id: newId, task: newTask.charAt(0).toUpperCase() + newTask.slice(1) };
       setItems([...items, newItem]);
 
       setNewTask("");
