@@ -47,7 +47,12 @@ const List = () => {
         <>
         {input && 
         <div className="absolute w-full h-full z-10 ">
-            <InputBox setInput={setInput} input={input} items={items} setItems={setItems}/>
+            <InputBox 
+                setInput={setInput} 
+                input={input} 
+                items={items} 
+                setItems={setItems}
+            />
         </div>
         }
         <div id="hello" className="max-w-[350px] text-white transition-all bg-red-500 w-full h-[450px] rounded-xl flex flex-col justify-evenly bg-opacity-90 border-2 border-red-600 backdrop-blur-sm shadow-2xl top-[40px] relative"> 
